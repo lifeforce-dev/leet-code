@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7b52c799-54ff-49b2-9be0-14810eee5ca9}</ProjectGuid>
-    <RootNamespace>My20validparenthesis</RootNamespace>
+    <ProjectGuid>{4e697ceb-2804-4cc2-ba5d-c97d1f8c8589}</ProjectGuid>
+    <RootNamespace>My35searchinsertposition</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
