@@ -173,7 +173,6 @@ public:
 	}
 
 	// Returns the total amount of time that this timer has been active (including paused).
-
 	std::chrono::milliseconds GetTotalElapsedMs() const
 	{
 		using namespace std::chrono;
@@ -181,6 +180,13 @@ public:
 	}
 
 	std::chrono::microseconds GetTotalElapsedUs() const
+	{
+		using namespace std::chrono;
+		return duration_cast<microseconds>(GetTotalElapsedNs());
+	}
+
+	// Returns the total amount of time that this timer has been active (including paused).
+	std::chrono::nanoseconds GetTotalElapsedNs() const
 	{
 		return DoGetElapsed();
 	}
@@ -198,18 +204,18 @@ public:
 	}
 
 private:
-	std::chrono::microseconds DoGetElapsed() const
+	std::chrono::nanoseconds DoGetElapsed() const
 	{
 		using namespace std::chrono;
 
 		if (!m_isRunning)
 		{
 			// If we stopped, then we only care about the time when we were running until we stopped.
-			return duration_cast<microseconds>(m_endTimeStamp - m_startTimeStamp);
+			return duration_cast<nanoseconds>(m_endTimeStamp - m_startTimeStamp);
 		}
 
 		// We're currently running and just want an update on how much time has elapsed.
-		return duration_cast<microseconds>(now() - m_startTimeStamp);
+		return duration_cast<nanoseconds>(now() - m_startTimeStamp);
 	}
 
 private:

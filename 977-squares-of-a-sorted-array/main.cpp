@@ -35,7 +35,7 @@ int main()
 	auto a = sortedSquares(nums);
 	timer.Stop();
 	SPDLOG_LOGGER_INFO(s_logger, "Time Elapsed: {}",
-		timer.GetTotalElapsedUs().count());
+		timer.GetTotalElapsedNs().count());
 
 	return 0;
 }
