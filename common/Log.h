@@ -43,7 +43,7 @@ void CreateLogger(const std::string& loggerName);
 
 private:
 	void Init();
-	std::shared_ptr<spdlog::sinks::basic_file_sink_mt> m_sharedSink;
+	//std::shared_ptr<spdlog::sinks::basic_file_sink_mt> m_sharedSink;
 };
 
 void CreateAndRegisterLogger(const std::string& name);

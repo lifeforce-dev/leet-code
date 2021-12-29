@@ -2,7 +2,12 @@
 #include <vector>
 #include <algorithm>
 
+#include "common/Log.h"
 #include "common/Timer.h"
+
+namespace {
+	std::shared_ptr<spdlog::logger> s_logger;
+}
 
 std::vector<int> sortedSquares(std::vector<int>& nums)
 {
@@ -19,7 +24,18 @@ std::vector<int> sortedSquares(std::vector<int>& nums)
 
 int main()
 {
+	REGISTER_LOGGER("977. Squares Of A Sorted Array");
+	s_logger = Log::Logger("977. Squares Of A Sorted Array");
+
+	Common::Timer timer;
+
 	std::vector<int> nums = { -4,-1,0,3,10 };
+
+	timer.Start();
 	auto a = sortedSquares(nums);
+	timer.Stop();
+	SPDLOG_LOGGER_INFO(s_logger, "Time Elapsed: {}",
+		timer.GetTotalElapsedUs().count());
+
 	return 0;
 }
