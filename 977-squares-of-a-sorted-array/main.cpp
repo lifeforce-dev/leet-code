@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "common/Timer.h"
+
 std::vector<int> sortedSquares(std::vector<int>& nums)
 {
 	std::vector<int> squares;
@@ -9,7 +11,7 @@ std::vector<int> sortedSquares(std::vector<int>& nums)
 
 	for (int num : nums)
 	{
-		squares.push_back(num*num);
+		squares.push_back(num * num);
 	}
 	std::sort(std::begin(squares), std::end(squares));
 	return squares;

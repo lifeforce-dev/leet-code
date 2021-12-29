@@ -15,6 +15,111 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "35-search-insert-position",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "977-squares-of-a-sorted-array", "977-squares-of-a-sorted-array\977-squares-of-a-sorted-array.vcxproj", "{9D95C520-4C44-4744-BA22-1F1322061BC3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contrib", "contrib", "{F0A2EC91-1ED6-4AAB-BF16-5956EF57E8C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{D4583A6B-065F-429B-85A5-EBB4CECF776E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{3EDA8F4B-2A6D-41A3-8886-707BCD1A8FE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5DC61A95-F5DC-44E3-A96B-9E86CAF67B4C}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\src\spdlog.cpp = dependencies\spdlog\src\spdlog.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{F68E60DB-D182-4DCB-8A86-8177EB6AA9C5}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\include\spdlog\async.h = dependencies\spdlog\include\spdlog\async.h
+		dependencies\spdlog\include\spdlog\async_logger-inl.h = dependencies\spdlog\include\spdlog\async_logger-inl.h
+		dependencies\spdlog\include\spdlog\async_logger.h = dependencies\spdlog\include\spdlog\async_logger.h
+		dependencies\spdlog\include\spdlog\common-inl.h = dependencies\spdlog\include\spdlog\common-inl.h
+		dependencies\spdlog\include\spdlog\common.h = dependencies\spdlog\include\spdlog\common.h
+		dependencies\spdlog\include\spdlog\formatter.h = dependencies\spdlog\include\spdlog\formatter.h
+		dependencies\spdlog\include\spdlog\logger-inl.h = dependencies\spdlog\include\spdlog\logger-inl.h
+		dependencies\spdlog\include\spdlog\logger.h = dependencies\spdlog\include\spdlog\logger.h
+		dependencies\spdlog\include\spdlog\spdlog-inl.h = dependencies\spdlog\include\spdlog\spdlog-inl.h
+		dependencies\spdlog\include\spdlog\spdlog.h = dependencies\spdlog\include\spdlog\spdlog.h
+		dependencies\spdlog\include\spdlog\tweakme.h = dependencies\spdlog\include\spdlog\tweakme.h
+		dependencies\spdlog\include\spdlog\version.h = dependencies\spdlog\include\spdlog\version.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "details", "details", "{1A298C09-249E-40F4-BA22-3A965BEEDD78}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\include\spdlog\details\circular_q.h = dependencies\spdlog\include\spdlog\details\circular_q.h
+		dependencies\spdlog\include\spdlog\details\console_globals.h = dependencies\spdlog\include\spdlog\details\console_globals.h
+		dependencies\spdlog\include\spdlog\details\file_helper-inl.h = dependencies\spdlog\include\spdlog\details\file_helper-inl.h
+		dependencies\spdlog\include\spdlog\details\file_helper.h = dependencies\spdlog\include\spdlog\details\file_helper.h
+		dependencies\spdlog\include\spdlog\details\fmt_helper.h = dependencies\spdlog\include\spdlog\details\fmt_helper.h
+		dependencies\spdlog\include\spdlog\details\log_msg-inl.h = dependencies\spdlog\include\spdlog\details\log_msg-inl.h
+		dependencies\spdlog\include\spdlog\details\log_msg.h = dependencies\spdlog\include\spdlog\details\log_msg.h
+		dependencies\spdlog\include\spdlog\details\mpmc_blocking_q.h = dependencies\spdlog\include\spdlog\details\mpmc_blocking_q.h
+		dependencies\spdlog\include\spdlog\details\null_mutex.h = dependencies\spdlog\include\spdlog\details\null_mutex.h
+		dependencies\spdlog\include\spdlog\details\os-inl.h = dependencies\spdlog\include\spdlog\details\os-inl.h
+		dependencies\spdlog\include\spdlog\details\os.h = dependencies\spdlog\include\spdlog\details\os.h
+		dependencies\spdlog\include\spdlog\details\pattern_formatter-inl.h = dependencies\spdlog\include\spdlog\details\pattern_formatter-inl.h
+		dependencies\spdlog\include\spdlog\details\pattern_formatter.h = dependencies\spdlog\include\spdlog\details\pattern_formatter.h
+		dependencies\spdlog\include\spdlog\details\periodic_worker-inl.h = dependencies\spdlog\include\spdlog\details\periodic_worker-inl.h
+		dependencies\spdlog\include\spdlog\details\periodic_worker.h = dependencies\spdlog\include\spdlog\details\periodic_worker.h
+		dependencies\spdlog\include\spdlog\details\registry-inl.h = dependencies\spdlog\include\spdlog\details\registry-inl.h
+		dependencies\spdlog\include\spdlog\details\registry.h = dependencies\spdlog\include\spdlog\details\registry.h
+		dependencies\spdlog\include\spdlog\details\synchronous_factory.h = dependencies\spdlog\include\spdlog\details\synchronous_factory.h
+		dependencies\spdlog\include\spdlog\details\thread_pool-inl.h = dependencies\spdlog\include\spdlog\details\thread_pool-inl.h
+		dependencies\spdlog\include\spdlog\details\thread_pool.h = dependencies\spdlog\include\spdlog\details\thread_pool.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fmt", "fmt", "{E66FC61B-49A5-454C-AD91-8AE8506C44F5}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\include\spdlog\fmt\bin_to_hex.h = dependencies\spdlog\include\spdlog\fmt\bin_to_hex.h
+		dependencies\spdlog\include\spdlog\fmt\fmt.h = dependencies\spdlog\include\spdlog\fmt\fmt.h
+		dependencies\spdlog\include\spdlog\fmt\ostr.h = dependencies\spdlog\include\spdlog\fmt\ostr.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sinks", "sinks", "{33B53A4A-7393-4CAA-A43F-75EB13916F6B}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\include\spdlog\sinks\android_sink.h = dependencies\spdlog\include\spdlog\sinks\android_sink.h
+		dependencies\spdlog\include\spdlog\sinks\ansicolor_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\ansicolor_sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\ansicolor_sink.h = dependencies\spdlog\include\spdlog\sinks\ansicolor_sink.h
+		dependencies\spdlog\include\spdlog\sinks\base_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\base_sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\base_sink.h = dependencies\spdlog\include\spdlog\sinks\base_sink.h
+		dependencies\spdlog\include\spdlog\sinks\basic_file_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\basic_file_sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\basic_file_sink.h = dependencies\spdlog\include\spdlog\sinks\basic_file_sink.h
+		dependencies\spdlog\include\spdlog\sinks\daily_file_sink.h = dependencies\spdlog\include\spdlog\sinks\daily_file_sink.h
+		dependencies\spdlog\include\spdlog\sinks\dist_sink.h = dependencies\spdlog\include\spdlog\sinks\dist_sink.h
+		dependencies\spdlog\include\spdlog\sinks\dup_filter_sink.h = dependencies\spdlog\include\spdlog\sinks\dup_filter_sink.h
+		dependencies\spdlog\include\spdlog\sinks\msvc_sink.h = dependencies\spdlog\include\spdlog\sinks\msvc_sink.h
+		dependencies\spdlog\include\spdlog\sinks\null_sink.h = dependencies\spdlog\include\spdlog\sinks\null_sink.h
+		dependencies\spdlog\include\spdlog\sinks\ostream_sink.h = dependencies\spdlog\include\spdlog\sinks\ostream_sink.h
+		dependencies\spdlog\include\spdlog\sinks\rotating_file_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\rotating_file_sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\rotating_file_sink.h = dependencies\spdlog\include\spdlog\sinks\rotating_file_sink.h
+		dependencies\spdlog\include\spdlog\sinks\sink-inl.h = dependencies\spdlog\include\spdlog\sinks\sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\sink.h = dependencies\spdlog\include\spdlog\sinks\sink.h
+		dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks-inl.h = dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks-inl.h
+		dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks.h = dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks.h
+		dependencies\spdlog\include\spdlog\sinks\stdout_sinks-inl.h = dependencies\spdlog\include\spdlog\sinks\stdout_sinks-inl.h
+		dependencies\spdlog\include\spdlog\sinks\stdout_sinks.h = dependencies\spdlog\include\spdlog\sinks\stdout_sinks.h
+		dependencies\spdlog\include\spdlog\sinks\syslog_sink.h = dependencies\spdlog\include\spdlog\sinks\syslog_sink.h
+		dependencies\spdlog\include\spdlog\sinks\systemd_sink.h = dependencies\spdlog\include\spdlog\sinks\systemd_sink.h
+		dependencies\spdlog\include\spdlog\sinks\wincolor_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\wincolor_sink-inl.h
+		dependencies\spdlog\include\spdlog\sinks\wincolor_sink.h = dependencies\spdlog\include\spdlog\sinks\wincolor_sink.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bundled", "bundled", "{3CFA2B6D-5CFA-41EF-82ED-ED6C0F8540A8}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies\spdlog\include\spdlog\fmt\bundled\chrono.h = dependencies\spdlog\include\spdlog\fmt\bundled\chrono.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\color.h = dependencies\spdlog\include\spdlog\fmt\bundled\color.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\core.h = dependencies\spdlog\include\spdlog\fmt\bundled\core.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\format-inl.h = dependencies\spdlog\include\spdlog\fmt\bundled\format-inl.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\format.h = dependencies\spdlog\include\spdlog\fmt\bundled\format.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\LICENSE.rst = dependencies\spdlog\include\spdlog\fmt\bundled\LICENSE.rst
+		dependencies\spdlog\include\spdlog\fmt\bundled\locale.h = dependencies\spdlog\include\spdlog\fmt\bundled\locale.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\ostream.h = dependencies\spdlog\include\spdlog\fmt\bundled\ostream.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\posix.h = dependencies\spdlog\include\spdlog\fmt\bundled\posix.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\printf.h = dependencies\spdlog\include\spdlog\fmt\bundled\printf.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\ranges.h = dependencies\spdlog\include\spdlog\fmt\bundled\ranges.h
+		dependencies\spdlog\include\spdlog\fmt\bundled\time.h = dependencies\spdlog\include\spdlog\fmt\bundled\time.h
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common\common.vcxproj", "{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,9 +176,27 @@ Global
 		{9D95C520-4C44-4744-BA22-1F1322061BC3}.Release|x64.Build.0 = Release|x64
 		{9D95C520-4C44-4744-BA22-1F1322061BC3}.Release|x86.ActiveCfg = Release|Win32
 		{9D95C520-4C44-4744-BA22-1F1322061BC3}.Release|x86.Build.0 = Release|Win32
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Debug|x64.ActiveCfg = Debug|x64
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Debug|x64.Build.0 = Debug|x64
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Debug|x86.ActiveCfg = Debug|Win32
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Debug|x86.Build.0 = Debug|Win32
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Release|x64.ActiveCfg = Release|x64
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Release|x64.Build.0 = Release|x64
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Release|x86.ActiveCfg = Release|Win32
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4583A6B-065F-429B-85A5-EBB4CECF776E} = {F0A2EC91-1ED6-4AAB-BF16-5956EF57E8C7}
+		{3EDA8F4B-2A6D-41A3-8886-707BCD1A8FE3} = {D4583A6B-065F-429B-85A5-EBB4CECF776E}
+		{5DC61A95-F5DC-44E3-A96B-9E86CAF67B4C} = {D4583A6B-065F-429B-85A5-EBB4CECF776E}
+		{F68E60DB-D182-4DCB-8A86-8177EB6AA9C5} = {3EDA8F4B-2A6D-41A3-8886-707BCD1A8FE3}
+		{1A298C09-249E-40F4-BA22-3A965BEEDD78} = {F68E60DB-D182-4DCB-8A86-8177EB6AA9C5}
+		{E66FC61B-49A5-454C-AD91-8AE8506C44F5} = {F68E60DB-D182-4DCB-8A86-8177EB6AA9C5}
+		{33B53A4A-7393-4CAA-A43F-75EB13916F6B} = {F68E60DB-D182-4DCB-8A86-8177EB6AA9C5}
+		{3CFA2B6D-5CFA-41EF-82ED-ED6C0F8540A8} = {E66FC61B-49A5-454C-AD91-8AE8506C44F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40BD80EF-F904-497C-BD9B-19D54CC6D27F}
