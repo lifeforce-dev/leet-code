@@ -5,21 +5,21 @@
 
 #ifdef __ANDROID__
 
-#include "spdlog/details/fmt_helper.h"
-#include "spdlog/details/null_mutex.h"
-#include "spdlog/details/os.h"
-#include "spdlog/sinks/base_sink.h"
-#include "spdlog/details/synchronous_factory.h"
+#    include <spdlog/details/fmt_helper.h>
+#    include <spdlog/details/null_mutex.h>
+#    include <spdlog/details/os.h>
+#    include <spdlog/sinks/base_sink.h>
+#    include <spdlog/details/synchronous_factory.h>
 
-#include <android/log.h>
-#include <chrono>
-#include <mutex>
-#include <string>
-#include <thread>
+#    include <android/log.h>
+#    include <chrono>
+#    include <mutex>
+#    include <string>
+#    include <thread>
 
-#if !defined(SPDLOG_ANDROID_RETRIES)
-#define SPDLOG_ANDROID_RETRIES 2
-#endif
+#    if !defined(SPDLOG_ANDROID_RETRIES)
+#        define SPDLOG_ANDROID_RETRIES 2
+#    endif
 
 namespace spdlog {
 namespace sinks {
@@ -40,7 +40,7 @@ protected:
     void sink_it_(const details::log_msg &msg) override
     {
         const android_LogPriority priority = convert_to_android_(msg.level);
-        fmt::memory_buffer formatted;
+        memory_buf_t formatted;
         if (use_raw_msg_)
         {
             details::fmt_helper::append_string_view(msg.payload, formatted);
@@ -64,7 +64,7 @@ protected:
 
         if (ret < 0)
         {
-            throw spdlog_ex("__android_log_write() failed", ret);
+            throw_spdlog_ex("__android_log_write() failed", ret);
         }
     }
 
