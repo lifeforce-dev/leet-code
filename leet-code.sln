@@ -157,6 +157,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "167-two-sum-ii", "167-two-s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scratch-pad", "scratch-pad\scratch-pad.vcxproj", "{3EABC5AE-5553-4ED5-9003-9FB186137E89}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-remove-nth-node-from-end-of-list", "19-remove-nth-node-from-end-of-list\19-remove-nth-node-from-end-of-list.vcxproj", "{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -253,6 +255,14 @@ Global
 		{3EABC5AE-5553-4ED5-9003-9FB186137E89}.Release|x64.Build.0 = Release|x64
 		{3EABC5AE-5553-4ED5-9003-9FB186137E89}.Release|x86.ActiveCfg = Release|Win32
 		{3EABC5AE-5553-4ED5-9003-9FB186137E89}.Release|x86.Build.0 = Release|Win32
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Debug|x64.ActiveCfg = Debug|x64
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Debug|x64.Build.0 = Debug|x64
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Debug|x86.ActiveCfg = Debug|Win32
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Debug|x86.Build.0 = Debug|Win32
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Release|x64.ActiveCfg = Release|x64
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Release|x64.Build.0 = Release|x64
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Release|x86.ActiveCfg = Release|Win32
+		{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
