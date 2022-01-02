@@ -113,7 +113,7 @@ SCENARIO("finding the longest substring without repeating characters")
 		WHEN("Finding the longest substring")
 		{
 			int length = lengthOfLongestSubstring(testStr);
-			REQUIRE(length == 3);
+			REQUIRE(length == 4);
 		}
 	}
 
@@ -126,7 +126,7 @@ SCENARIO("finding the longest substring without repeating characters")
 		WHEN("Finding the longest substring")
 		{
 			int length = lengthOfLongestSubstring(testStr);
-			REQUIRE(length == 10);
+			REQUIRE(length == 15);
 		}
 	}
 
