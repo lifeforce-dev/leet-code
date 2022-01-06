@@ -150,7 +150,7 @@ bool IsWindowPermutation(const Window& window)
 	return isPermutation;
 }
 
-bool checkInclusionTest2(std::string queryStr, std::string sourceStr)
+bool checkInclusion(std::string queryStr, std::string sourceStr)
 {
 	// There are not enough letters in sourceStr to contain a permutation of queryStr.
 	if (queryStr.size() > sourceStr.size())
@@ -159,7 +159,10 @@ bool checkInclusionTest2(std::string queryStr, std::string sourceStr)
 	}
 
 	Window window;
+	// Set up the look up tables and our initial window.s
 	init(queryStr, sourceStr, window);
+
+	// We're done if window happens to be a permutation.
 	if (IsWindowPermutation(window))
 	{
 		return true;
@@ -168,9 +171,11 @@ bool checkInclusionTest2(std::string queryStr, std::string sourceStr)
 	int sentinal = sourceStr.size() - queryStr.size();
 	while (window.beginIndex < sentinal)
 	{
+		// Move the window and check if that's a permutation.
 		updateWindow(window, sourceStr);
 		if (IsWindowPermutation(window))
 		{
+			std::cout << "Found Permutation. beginIndex=" << window.beginIndex << "\n";
 			return true;
 		}
 	}
@@ -180,83 +185,84 @@ bool checkInclusionTest2(std::string queryStr, std::string sourceStr)
 
 SCENARIO("Determine if a string contains a permutation of another string.")
 {
-	GIVEN("test string [ab] source string [eidbaooo]")
+	GIVEN("test string [abbo] source string [beidbabooo]")
 	{
-		std::string s1 = "abbo";
-		std::string s2 = "beidbabooo";
+		std::string queryStr = "abbo";
+		std::string sourceStr = "beidbabooo";
 
 		WHEN("Searching for permutation")
 		{
-			REQUIRE(checkInclusionTest2(s1, s2) == true);
+			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
 
 	GIVEN("test string with permutation at end")
 	{
-		std::string s1 = "ab";
-		std::string s2 = "lkjhgfdsaapoiuytrewba";
+		std::string queryStr = "ab";
+		std::string sourceStr = "lkjhgfdsaapoiuytrewba";
 
 		WHEN("Searching for permutation")
 		{
-			REQUIRE(checkInclusionTest2(s1, s2) == true);
+			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
 
 	GIVEN("test string with permutation at beginning")
 	{
-		std::string s1 = "ab";
-		std::string s2 = "bacdefghijku";
+		std::string queryStr = "ab";
+		std::string sourceStr = "bacdefghijku";
 
 		WHEN("Searching for permutation")
 		{
-			REQUIRE(checkInclusionTest2(s1, s2) == true);
+			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
 	GIVEN("test string with lots of duplicates")
 	{
-		std::string s1 = "ab";
-		std::string s2 = "aaaaaaaaaaaaaaaafbfafbfabfffaoksl";
+		std::string queryStr = "ab";
+		std::string sourceStr = "aaaaaaaaaaaaaaaafbfafbfabfffaoksl";
 
 		WHEN("Searching for permutation")
 		{
-			REQUIRE(checkInclusionTest2(s1, s2) == true);
+			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
 
 	GIVEN("An source string larger than query string.")
 	{
-		std::string s1 = "ab";
-		std::string s2 = "a";
+		std::string queryStr = "ab";
+		std::string sourceStr = "a";
 
 		WHEN("Searching for permutation")
 		{
-			REQUIRE(checkInclusionTest2(s1, s2) == false);
+			REQUIRE(checkInclusion(queryStr, sourceStr) == false);
 		}
 	}
 
 	GIVEN("Testing a massive string with permutation at end")
 	{
+		std::string queryStr = "aabccddeffghiijkklmnoopqrrrstttuvvwxyz";
+		//std::string queryStr = "aabbcdf";
+		std::random_device rd;
+		std::mt19937 gen(rd());
+
+		// Derived from shuffling the "query string" so that the permutation isn't 1:1 identical.
+		std::string permutationStr = queryStr;
+		std::shuffle(permutationStr.begin(), permutationStr.end(), gen);
+
 		// Generate massive random string with guaranteed permutation at the end.
-		//std::string s1 = "snroavitraifgtwrkchdczmlduoxpqkvbyftej";
-		//std::string s2 = Common::GetRandomLowercaseString(10000000);
-		//std::stringstream ss;
-		//ss << s2 << s1;
-		//std::ofstream out("test_data.txt");
-		//out << ss.str();
-		//out.close();
-		//-----------------------------------------------------------
-		std::ifstream data;
-		data.open("test_data.txt");
-		std::string s1 = "aabccddeffghiijkklmnoopqrrrstttuvvwxyz";
-		std::string s2;
-		s2.reserve(10000000);
-		std::getline(data, s2);
+		std::string randomStr = Common::GetRandomLowercaseString(1000000);
+		std::stringstream ss;
+		ss << randomStr << permutationStr;
+
+		//std::string queryStr = "cadebabb";
+
 
 		WHEN("Searching for permutation")
 		{
 			Common::Timer timer;
 			timer.Start();
-			bool foundPermutation = checkInclusionTest2(s1, s2);
+			bool foundPermutation = checkInclusion(queryStr, ss.str());
 			REQUIRE(foundPermutation);
 			timer.Stop();
 			std::cout << fmt::format("Found permutation test 2: {} |Time Elapsed: {}ms\n",
