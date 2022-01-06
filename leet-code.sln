@@ -4,16 +4,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20-valid-parenthesis", "20-valid-parenthesis\20-valid-parenthesis.vcxproj", "{7B52C799-54FF-49B2-9BE0-14810EEE5CA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "200-number-of-islands", "200-number-of-islands\200-number-of-islands.vcxproj", "{92FC1DAC-0F55-4D8B-ACA7-F561E3001113}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "binary-search", "binary-search\binary-search.vcxproj", "{28EA653A-72ED-4B50-BC44-55C5C657017A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "first-bad-version", "first-bad-version\first-bad-version.vcxproj", "{638908B3-06A5-4ADC-9081-B97D0E7E5586}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "35-search-insert-position", "35-search-insert-position\35-search-insert-position.vcxproj", "{4E697CEB-2804-4CC2-BA5D-C97D1F8C8589}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "977-squares-of-a-sorted-array", "977-squares-of-a-sorted-array\977-squares-of-a-sorted-array.vcxproj", "{9D95C520-4C44-4744-BA22-1F1322061BC3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contrib", "contrib", "{F0A2EC91-1ED6-4AAB-BF16-5956EF57E8C7}"
 EndProject
@@ -145,8 +160,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bundled", "bundled", "{75AF
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "189-rotate-array", "189-rotate-array\189-rotate-array.vcxproj", "{3A7D410C-5154-4349-8A04-65D183FB7430}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "283-move-zeroes", "283-move-zeroes\283-move-zeroes.vcxproj", "{3F97D72B-E120-42B8-A0CB-13BABC34B566}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catch2", "Catch2", "{D8FECFF0-92B0-415B-8DB2-93A87B39D6F1}"
 	ProjectSection(SolutionItems) = preProject
@@ -154,12 +175,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catch2", "Catch2", "{D8FECF
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "167-two-sum-ii", "167-two-sum-ii\167-two-sum-ii.vcxproj", "{239C856D-BD89-4034-82DD-CC9878E985BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scratch-pad", "scratch-pad\scratch-pad.vcxproj", "{3EABC5AE-5553-4ED5-9003-9FB186137E89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-remove-nth-node-from-end-of-list", "19-remove-nth-node-from-end-of-list\19-remove-nth-node-from-end-of-list.vcxproj", "{796E9FFA-8515-4B24-9ADC-B2D04F3F7D8C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3-longest-substring-without-repeating-characters", "3-longest-substring-without-repeating-characters\3-longest-substring-without-repeating-characters.vcxproj", "{823BB0BB-35FA-4FE7-8640-C6A7E2E19B0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "567-permutation-in-string", "567-permutation-in-string\567-permutation-in-string.vcxproj", "{35919583-6DAF-4017-A87F-62D0EFF9FADC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -273,6 +311,14 @@ Global
 		{823BB0BB-35FA-4FE7-8640-C6A7E2E19B0E}.Release|x64.Build.0 = Release|x64
 		{823BB0BB-35FA-4FE7-8640-C6A7E2E19B0E}.Release|x86.ActiveCfg = Release|Win32
 		{823BB0BB-35FA-4FE7-8640-C6A7E2E19B0E}.Release|x86.Build.0 = Release|Win32
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Debug|x64.ActiveCfg = Debug|x64
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Debug|x64.Build.0 = Debug|x64
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Debug|x86.ActiveCfg = Debug|Win32
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Debug|x86.Build.0 = Debug|Win32
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Release|x64.ActiveCfg = Release|x64
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Release|x64.Build.0 = Release|x64
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Release|x86.ActiveCfg = Release|Win32
+		{35919583-6DAF-4017-A87F-62D0EFF9FADC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

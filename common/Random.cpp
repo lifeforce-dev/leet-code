@@ -5,6 +5,7 @@
 
 #include "common/Random.h"
 
+#include <algorithm>
 #include <random>
 
 namespace {
@@ -27,6 +28,20 @@ std::vector<int> GetRandomNumberList(int count, int lowerBound, int upperBound)
 	}
 
 	return ints;
+}
+
+std::string GetRandomLowercaseString(int count)
+{
+	std::string s(count, ' ');
+	std::uniform_int_distribution<int> dist(0, 25);
+	std::string letters = "abcdefghijklmnopqrstuvwxyz";
+
+	std::generate_n(std::begin(s), count, [&dist, &letters]()
+	{
+		return letters[dist(s_mt)];
+	});
+
+	return s;
 }
 
 int GetRandomNumber(int lowerBound, int upperBound)
