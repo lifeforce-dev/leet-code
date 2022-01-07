@@ -25,6 +25,8 @@ namespace {
 
 	// Frequency of all chars in the string that might contain permutations of query.
 	std::vector<int> s_sourceStrFrequencyTable(s_asciiTableSize, 0);
+
+	Common::Timer s_timer;
 }
 
 struct Window
@@ -141,16 +143,29 @@ bool IsWindowPermutation(const Window& window)
 	// If all characters in our view are matches of the same frequency,
 	// this window is a permutation.
 	bool isPermutation = true;
-	for (int i = 0; i < viewSize; ++i)
-	{
-		isPermutation &= isMatch(windowView[i])
-			&& isFrequencyMatch(windowView[i]);
-	}
 
+	// optimization
+	if (windowView.size() > s_asciiTableSize)
+	{
+		for (int i = 0; i < s_asciiTableSize; ++i)
+		{
+			isPermutation &=
+				s_queryStrFrequencyTable[i] == s_sourceStrFrequencyTable[i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < viewSize; ++i)
+		{
+			isPermutation &= s_queryStrFrequencyTable[windowView[i] - s_letterOffset]
+				== s_sourceStrFrequencyTable[windowView[i] - s_letterOffset];
+
+		}
+	}
 	return isPermutation;
 }
 
-bool checkInclusion(std::string queryStr, std::string sourceStr)
+bool checkInclusion(const std::string& queryStr, const std::string& sourceStr)
 {
 	// There are not enough letters in sourceStr to contain a permutation of queryStr.
 	if (queryStr.size() > sourceStr.size())
@@ -179,7 +194,7 @@ bool checkInclusion(std::string queryStr, std::string sourceStr)
 			return true;
 		}
 	}
-
+	std::cout << "Failed to find permutation. beginIndex=" << window.beginIndex << "\n";
 	return false;
 }
 
@@ -187,6 +202,11 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 {
 	GIVEN("test string [abbo] source string [beidbabooo]")
 	{
+		// queryStr = abbo
+		// sourceStr = beidbabooo
+		// windowEnd      |->
+		// windowBegin _->
+
 		std::string queryStr = "abbo";
 		std::string sourceStr = "beidbabooo";
 
@@ -241,8 +261,8 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 
 	GIVEN("Testing a massive string with permutation at end")
 	{
-		std::string queryStr = "aabccddeffghiijkklmnoopqrrrstttuvvwxyz";
-		//std::string queryStr = "aabbcdf";
+		std::string queryStr = "aabccddeffghiijkklmnoopqrrrstttuvvwxyzzzzzzzzffffffggggggggguuuuiiiiiiissssssoijfoijweofijosidjfoijsofdijwoijoijiwmlkfmqmlkmsfmnmasofij";
+		//std::string queryStr = "abcdefghijklmnopqrstuvwxy";
 		std::random_device rd;
 		std::mt19937 gen(rd());
 
@@ -251,7 +271,7 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		std::shuffle(permutationStr.begin(), permutationStr.end(), gen);
 
 		// Generate massive random string with guaranteed permutation at the end.
-		std::string randomStr = Common::GetRandomLowercaseString(1000000);
+		std::string randomStr = Common::GetRandomLowercaseString(1000000000);
 		std::stringstream ss;
 		ss << randomStr << permutationStr;
 
@@ -262,6 +282,7 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		{
 			Common::Timer timer;
 			timer.Start();
+
 			bool foundPermutation = checkInclusion(queryStr, ss.str());
 			REQUIRE(foundPermutation);
 			timer.Stop();
