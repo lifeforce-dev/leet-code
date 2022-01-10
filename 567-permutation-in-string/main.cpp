@@ -9,11 +9,13 @@
 #include <algorithm>
 #include <assert.h>
 #include <fstream>
+#include <iostream>
+#include <iterator>
+#include <numeric>
 #include <random>
 #include <string>
 #include <string_view>
-#include <iostream>
-#include <iterator>
+#include <vector>
 
 namespace {
 	// Used to index lowercase ascii characters.
@@ -25,8 +27,6 @@ namespace {
 
 	// Frequency of all chars in the string that might contain permutations of query.
 	std::vector<int> s_sourceStrFrequencyTable(s_asciiTableSize, 0);
-
-	Common::Timer s_timer;
 }
 
 struct Window
@@ -37,43 +37,69 @@ struct Window
 	// Keeping track of the number of matches we find in our window.
 	int numMatches = 0;
 
+	// When we reach this number of matches, we're done.
+	int targetMatches = 0;
+
 	// View of the letters we can see through the window.
 	std::string_view view;
 };
 
-void IncrementFrequency(std::vector<int>& table, char letter)
-{
-	// index into the table using ascii as an index.
-	table[letter - s_letterOffset]++;
-}
-
-void DecrementFrequency(std::vector<int>& table, char letter)
-{
-	// index into the table using ascii as an index.
-	int count = table[letter - s_letterOffset];
-	count--;
-	// This should never be below 0.
-	assert(count >= 0);
-	table[letter - s_letterOffset] = count;
-}
-
-// returns whether the letter appears in both tables.
+// Returns whether the letter appears in both tables with the same frequency.
 bool isMatch(char letter)
 {
-	return s_queryStrFrequencyTable[letter - s_letterOffset] > 0
-		&& s_sourceStrFrequencyTable[letter - s_letterOffset] > 0;
+	int queryTableCount = s_queryStrFrequencyTable[letter - s_letterOffset];
+	int sourceTableCount = s_sourceStrFrequencyTable[letter - s_letterOffset];
+
+	return queryTableCount > 0 && sourceTableCount == queryTableCount;
 }
 
-bool isFrequencyMatch(char letter)
+void updateMatch(Window& window, bool wasMatch, char letter)
 {
-	return s_queryStrFrequencyTable[letter - s_letterOffset] ==
-		s_sourceStrFrequencyTable[letter - s_letterOffset];
+	bool isMatchNow = isMatch(letter);
+	if (wasMatch == isMatchNow)
+		return;
+
+	// Whether we came TO or FROM being a match, update numMatches appropriately.
+	window.numMatches += !wasMatch && isMatch(letter) ? 1 : -1;
 }
 
-void init(const std::string queryStr, const std::string& sourceStr, Window& window)
+void updateFrequency(Window& window, std::vector<int>& table, char letter, int count)
+{
+	// We need to know if updating the frequency caused a match or an unmatch.
+	bool wasMatch = isMatch(letter);
+	table[letter - s_letterOffset] += count;
+	updateMatch(window, wasMatch, letter);
+}
+
+int getUniqueLetterCount(const std::string& str)
+{
+	std::vector<int> letterCounts(s_asciiTableSize, 0);
+	int uniqueCount = 0;
+	for (char letter : str)
+	{
+		// Early out in the case of huge string and we have already seen the alphabet.
+		if (uniqueCount>= s_asciiTableSize)
+		{
+			return uniqueCount;
+		}
+
+		int currentCount = ++letterCounts[letter - s_letterOffset];
+		if (currentCount == 1)
+		{
+			uniqueCount++;
+		}
+	}
+
+	return uniqueCount;
+}
+
+void init(const std::string& queryStr, const std::string& sourceStr, Window& window)
 {
 	std::fill(std::begin(s_queryStrFrequencyTable), std::end(s_queryStrFrequencyTable), 0);
 	std::fill(std::begin(s_sourceStrFrequencyTable), std::end(s_sourceStrFrequencyTable), 0);
+
+	int count = getUniqueLetterCount(queryStr);
+	window.targetMatches = count;
 
 	// Init the window.
 	window.beginIndex = 0;
@@ -82,22 +108,13 @@ void init(const std::string queryStr, const std::string& sourceStr, Window& wind
 	// Populate initial frequency table for query string.
 	for (int i = 0; i < queryStr.size(); ++i)
 	{
-		IncrementFrequency(s_queryStrFrequencyTable, queryStr[i]);
+		updateFrequency(window, s_queryStrFrequencyTable, queryStr[i], 1);
 	}
 
 	// Load the initial window into the source frequency table.
 	for (int i = 0; i < view.size(); ++i)
 	{
-		IncrementFrequency(s_sourceStrFrequencyTable, sourceStr[i]);
-	}
-
-	// Init matches in our inital window.
-	for (int i = 0; i < view.size(); ++i)
-	{
-		if (isMatch(view[i]))
-		{
-			window.numMatches++;
-		}
+		updateFrequency(window, s_sourceStrFrequencyTable, sourceStr[i], 1);
 	}
 
 	window.view = view;
@@ -106,90 +123,60 @@ void init(const std::string queryStr, const std::string& sourceStr, Window& wind
 // Moves the window forward one step
 void updateWindow(Window& window, const std::string& sourceStr)
 {
-	// To move the window, we need to shift the left side and then the right.
 	std::string_view& view = window.view;
 
-	// We need to account for matches that might have fallen out of view.
-	if (isMatch(view[0]))
-	{
-		window.numMatches--;
-	}
-
-	DecrementFrequency(s_sourceStrFrequencyTable, view[0]);
+	// When moving the window over, we only need to maintain the counts of
+	// the letter falling off, and the letter coming into view.
+	updateFrequency(window, s_sourceStrFrequencyTable, view.front(), -1);
 
 	// Shift the window over.
 	window.beginIndex++;
 	view = std::string_view(sourceStr.data() + window.beginIndex, view.size());
 
-	int viewEnd = view.size() - 1;
-	IncrementFrequency(s_sourceStrFrequencyTable, view[viewEnd]);
-
-	// Now we need to account for any new matches that might have come into view.
-	if (isMatch(view[viewEnd]))
-	{
-		window.numMatches++;
-	}
+	updateFrequency(window, s_sourceStrFrequencyTable, view.back(), 1);
 }
 
-bool IsWindowPermutation(const Window& window)
+bool isWindowPermutation(const Window& window)
 {
-	const std::string_view& windowView = window.view;
-	int viewSize = windowView.size();
-	if (window.numMatches != viewSize)
-	{
+	if (window.numMatches != window.targetMatches)
 		return false;
-	}
 
-	// If all characters in our view are matches of the same frequency,
-	// this window is a permutation.
-	bool isPermutation = true;
-
-	// optimization
-	if (windowView.size() > s_asciiTableSize)
-	{
-		for (int i = 0; i < s_asciiTableSize; ++i)
-		{
-			isPermutation &=
-				s_queryStrFrequencyTable[i] == s_sourceStrFrequencyTable[i];
-		}
-	}
-	else
-	{
-		for (int i = 0; i < viewSize; ++i)
-		{
-			isPermutation &= s_queryStrFrequencyTable[windowView[i] - s_letterOffset]
-				== s_sourceStrFrequencyTable[windowView[i] - s_letterOffset];
-
-		}
-	}
-	return isPermutation;
+	return true;
 }
 
 bool checkInclusion(const std::string& queryStr, const std::string& sourceStr)
 {
+	if (queryStr.empty() || sourceStr.empty())
+	{
+		return false;
+	}
+
 	// There are not enough letters in sourceStr to contain a permutation of queryStr.
 	if (queryStr.size() > sourceStr.size())
 	{
 		return false;
 	}
 
+	// Set up the look up tables and our initial window.
 	Window window;
-	// Set up the look up tables and our initial window.s
 	init(queryStr, sourceStr, window);
 
-	// We're done if window happens to be a permutation.
-	if (IsWindowPermutation(window))
+	// We're done if initial window happens to be a permutation.
+	if (isWindowPermutation(window))
 	{
+		std::cout << "Found Permutation. beginIndex=" << window.beginIndex << "\n";
 		return true;
 	}
 
-	int sentinal = sourceStr.size() - queryStr.size();
-	while (window.beginIndex < sentinal)
+	int sentinel = sourceStr.size() - queryStr.size();
+	while (window.beginIndex < sentinel)
 	{
-		// Move the window and check if that's a permutation.
+		// Move the window and check if it's a permutation.
 		updateWindow(window, sourceStr);
-		if (IsWindowPermutation(window))
+		if (isWindowPermutation(window))
 		{
+			bool isPermutation = true;
+
 			std::cout << "Found Permutation. beginIndex=" << window.beginIndex << "\n";
 			return true;
 		}
@@ -200,12 +187,13 @@ bool checkInclusion(const std::string& queryStr, const std::string& sourceStr)
 
 SCENARIO("Determine if a string contains a permutation of another string.")
 {
-	GIVEN("test string [abbo] source string [beidbabooo]")
+	GIVEN("Query string [abbo] source string [beidbabooo].")
 	{
+		// Visualization:
 		// queryStr = abbo
 		// sourceStr = beidbabooo
-		// windowEnd      |->
-		// windowBegin _->
+		// windowEnd      |
+		// windowBegin _
 
 		std::string queryStr = "abbo";
 		std::string sourceStr = "beidbabooo";
@@ -216,7 +204,7 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		}
 	}
 
-	GIVEN("test string with permutation at end")
+	GIVEN("Source string with permutation at end.")
 	{
 		std::string queryStr = "ab";
 		std::string sourceStr = "lkjhgfdsaapoiuytrewba";
@@ -227,7 +215,7 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		}
 	}
 
-	GIVEN("test string with permutation at beginning")
+	GIVEN("Source string with permutation at beginning.")
 	{
 		std::string queryStr = "ab";
 		std::string sourceStr = "bacdefghijku";
@@ -237,18 +225,18 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
-	GIVEN("test string with lots of duplicates")
+
+	GIVEN("Source string with lots of duplicate sequences.")
 	{
 		std::string queryStr = "ab";
-		std::string sourceStr = "aaaaaaaaaaaaaaaafbfafbfabfffaoksl";
-
+		std::string sourceStr = "aafbfafbfabfffaoksl";
 		WHEN("Searching for permutation")
 		{
 			REQUIRE(checkInclusion(queryStr, sourceStr) == true);
 		}
 	}
 
-	GIVEN("An source string larger than query string.")
+	GIVEN("A query string larger than source string.")
 	{
 		std::string queryStr = "ab";
 		std::string sourceStr = "a";
@@ -259,10 +247,32 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		}
 	}
 
-	GIVEN("Testing a massive string with permutation at end")
+	GIVEN("An empty query string.")
 	{
-		std::string queryStr = "aabccddeffghiijkklmnoopqrrrstttuvvwxyzzzzzzzzffffffggggggggguuuuiiiiiiissssssoijfoijweofijosidjfoijsofdijwoijoijiwmlkfmqmlkmsfmnmasofij";
-		//std::string queryStr = "abcdefghijklmnopqrstuvwxy";
+		std::string queryStr = "";
+		std::string sourceStr = "abcdefg";
+
+		WHEN("Searching for permutation")
+		{
+			REQUIRE(checkInclusion(queryStr, sourceStr) == false);
+		}
+	}
+
+	GIVEN("Two empty strings.")
+	{
+		std::string queryStr = "";
+		std::string sourceStr = "";
+
+		WHEN("Searching for permutation")
+		{
+			REQUIRE(checkInclusion(queryStr, sourceStr) == false);
+		}
+	}
+
+	GIVEN("Testing a massive string with permutation at end.")
+	{
+		std::string queryStr = "aabccddezzzzzzzzffghiijkklmnoopqrrrstttuvvwxyffffffggggggggguuuuiiiiiiissssssoijfoijweofijosidjfoijsofdijwoijoijiwmlkfmqmlkmsfmnmasofij";
+		//std::string queryStr = "abcdefghijklmnopqrstuvwxyz";
 		std::random_device rd;
 		std::mt19937 gen(rd());
 
@@ -271,24 +281,32 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 		std::shuffle(permutationStr.begin(), permutationStr.end(), gen);
 
 		// Generate massive random string with guaranteed permutation at the end.
-		std::string randomStr = Common::GetRandomLowercaseString(1000000000);
+		std::string randomStr;
+		randomStr.reserve(10000000);
+		Common::GetRandomLowercaseString(randomStr, 10000000);
 		std::stringstream ss;
-		ss << randomStr << permutationStr;
+		ss << std::move(randomStr) << std::move(permutationStr);
 
 		//std::string queryStr = "cadebabb";
 
-
 		WHEN("Searching for permutation")
 		{
+			std::cout << "Starting:\n";
 			Common::Timer timer;
 			timer.Start();
-
 			bool foundPermutation = checkInclusion(queryStr, ss.str());
+			if (!foundPermutation)
+			{
+				std::cout << ss.str();
+			}
 			REQUIRE(foundPermutation);
 			timer.Stop();
+			if (foundPermutation)
+			{
 			std::cout << fmt::format("Found permutation test 2: {} |Time Elapsed: {}ms\n",
 				foundPermutation,
 				timer.GetTotalElapsedMs().count());
+			}
 		}
 	}
 }
