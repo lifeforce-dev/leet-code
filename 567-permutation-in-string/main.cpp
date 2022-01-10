@@ -271,7 +271,9 @@ SCENARIO("Determine if a string contains a permutation of another string.")
 
 	GIVEN("Testing a massive string with permutation at end.")
 	{
-		std::string queryStr = "aabccddezzzzzzzzffghiijkklmnoopqrrrstttuvvwxyffffffggggggggguuuuiiiiiiissssssoijfoijweofijosidjfoijsofdijwoijoijiwmlkfmqmlkmsfmnmasofij";
+		std::string queryStr = "aabccddezzzzzzzzffghiijkklmnoopqrrrstttuvvwx"
+			"yffffffggggggggguuuuiiiiiiissssssoijfoijweofijosidjfoijsofdijwo"
+			"joijiwmlkfmqmlkmsfmnmasofijfoijoijosijoijwmnxcvnjksdfqupduihqez";
 		//std::string queryStr = "abcdefghijklmnopqrstuvwxyz";
 		std::random_device rd;
 		std::mt19937 gen(rd());
