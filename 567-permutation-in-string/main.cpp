@@ -29,7 +29,7 @@ namespace {
 	std::vector<int> s_sourceStrFrequencyTable(s_asciiTableSize, 0);
 }
 
-struct Window
+struct WindowContext
 {
 	// Index into source string of the first character in the window.
 	int beginIndex = 0;
@@ -53,7 +53,7 @@ bool isMatch(char letter)
 	return queryTableCount > 0 && sourceTableCount == queryTableCount;
 }
 
-void updateMatch(Window& window, bool wasMatch, char letter)
+void updateMatch(WindowContext& window, bool wasMatch, char letter)
 {
 	bool isMatchNow = isMatch(letter);
 	if (wasMatch == isMatchNow)
@@ -63,7 +63,7 @@ void updateMatch(Window& window, bool wasMatch, char letter)
 	window.numMatches += !wasMatch && isMatch(letter) ? 1 : -1;
 }
 
-void updateFrequency(Window& window, std::vector<int>& table, char letter, int count)
+void updateFrequency(WindowContext& window, std::vector<int>& table, char letter, int count)
 {
 	// We need to know if updating the frequency caused a match or an unmatch.
 	bool wasMatch = isMatch(letter);
@@ -93,7 +93,7 @@ int getUniqueLetterCount(const std::string& str)
 	return uniqueCount;
 }
 
-void init(const std::string& queryStr, const std::string& sourceStr, Window& window)
+void init(const std::string& queryStr, const std::string& sourceStr, WindowContext& window)
 {
 	std::fill(std::begin(s_queryStrFrequencyTable), std::end(s_queryStrFrequencyTable), 0);
 	std::fill(std::begin(s_sourceStrFrequencyTable), std::end(s_sourceStrFrequencyTable), 0);
@@ -121,7 +121,7 @@ void init(const std::string& queryStr, const std::string& sourceStr, Window& win
 }
 
 // Moves the window forward one step
-void updateWindow(Window& window, const std::string& sourceStr)
+void updateWindow(WindowContext& window, const std::string& sourceStr)
 {
 	std::string_view& view = window.view;
 
@@ -136,7 +136,7 @@ void updateWindow(Window& window, const std::string& sourceStr)
 	updateFrequency(window, s_sourceStrFrequencyTable, view.back(), 1);
 }
 
-bool isWindowPermutation(const Window& window)
+bool isWindowPermutation(const WindowContext& window)
 {
 	if (window.numMatches != window.targetMatches)
 		return false;
@@ -158,7 +158,7 @@ bool checkInclusion(const std::string& queryStr, const std::string& sourceStr)
 	}
 
 	// Set up the look up tables and our initial window.
-	Window window;
+	WindowContext window;
 	init(queryStr, sourceStr, window);
 
 	// We're done if initial window happens to be a permutation.
