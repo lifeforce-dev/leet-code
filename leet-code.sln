@@ -200,6 +200,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "733-flood-fill", "733-flood
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "695-max-area-of-island", "695-max-area-of-island\695-max-area-of-island.vcxproj", "{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "443-string-compression", "443-string-compression\443-string-compression.vcxproj", "{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -336,6 +338,14 @@ Global
 		{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}.Release|x64.Build.0 = Release|x64
 		{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}.Release|x86.ActiveCfg = Release|Win32
 		{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}.Release|x86.Build.0 = Release|Win32
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Debug|x64.ActiveCfg = Debug|x64
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Debug|x64.Build.0 = Debug|x64
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Debug|x86.ActiveCfg = Debug|Win32
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Debug|x86.Build.0 = Debug|Win32
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x64.ActiveCfg = Release|x64
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x64.Build.0 = Release|x64
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x86.ActiveCfg = Release|Win32
+		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

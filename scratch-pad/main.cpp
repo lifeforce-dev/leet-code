@@ -4,6 +4,7 @@
 #include <iterator>
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 std::string reverseWords(std::string s)
 {
@@ -76,20 +77,28 @@ void printStringView(const std::string_view& sv)
 // Test this by running in release.
 int main()
 {
-	std::string_view view;
-	std::string s = "beidbabooo";
 
-	// Get our string view.
-	init(view, s);
-
-	// Try and overwrite a bunch of data so as to blow away any temporary
-	// object that's been created on the stack.
-	for (int i = 0; i < 10000000; ++i)
+	int count = 0;
+	std::stringstream ss;
+	std::string str = "aaaabbbbbbcccccccccccccccccccccccccccccccdddddddhhhhhjjjjjkkkkkkssssso";
+	str = "aaab";
+	char current = str[0];
+	int size = str.size();
+	bool done = false;
+	int pos = 0;
+	while (!done)
 	{
-		std::string test = "abcdefghijklmnopabcdefghijklmnopabcdefghijklmnopabcdefghijklmnopabcdefghijklmnopabcdefghijklmnop";
+		count++;
+		done = pos + 1 == str.size();
+		if (done || str[pos + 1] != current)
+		{
+			ss << current << count;
+			count = 0;
+			current = str[std::min(pos + 1, size - 1)];
+		}
+		pos++;
 	}
 
-	// Print what we have.
-	printStringView(view);
+	std::cout << ss.str();
 }
 ;
