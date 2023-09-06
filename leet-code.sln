@@ -132,9 +132,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sinks", "sinks", "{B20649B2
 		dependencies\spdlog\include\spdlog\sinks\syslog_sink.h = dependencies\spdlog\include\spdlog\sinks\syslog_sink.h
 		dependencies\spdlog\include\spdlog\sinks\systemd_sink.h = dependencies\spdlog\include\spdlog\sinks\systemd_sink.h
 		dependencies\spdlog\include\spdlog\sinks\tcp_sink.h = dependencies\spdlog\include\spdlog\sinks\tcp_sink.h
-		dependencies\spdlog\include\spdlog\sinks\win_eventlog_sink.h = dependencies\spdlog\include\spdlog\sinks\win_eventlog_sink.h
 		dependencies\spdlog\include\spdlog\sinks\wincolor_sink-inl.h = dependencies\spdlog\include\spdlog\sinks\wincolor_sink-inl.h
 		dependencies\spdlog\include\spdlog\sinks\wincolor_sink.h = dependencies\spdlog\include\spdlog\sinks\wincolor_sink.h
+		dependencies\spdlog\include\spdlog\sinks\win_eventlog_sink.h = dependencies\spdlog\include\spdlog\sinks\win_eventlog_sink.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bundled", "bundled", "{75AFED46-D83D-46BF-9D2C-3BA82F0A9D0B}"
@@ -201,6 +201,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "695-max-area-of-island", "695-max-area-of-island\695-max-area-of-island.vcxproj", "{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "443-string-compression", "443-string-compression\443-string-compression.vcxproj", "{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "617-merge-two-binary-trees", "617-merge-two-binary-trees\617-merge-two-binary-trees.vcxproj", "{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -346,6 +348,14 @@ Global
 		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x64.Build.0 = Release|x64
 		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x86.ActiveCfg = Release|Win32
 		{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}.Release|x86.Build.0 = Release|Win32
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Debug|x64.ActiveCfg = Debug|x64
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Debug|x64.Build.0 = Debug|x64
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Debug|x86.ActiveCfg = Debug|Win32
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Debug|x86.Build.0 = Debug|Win32
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Release|x64.ActiveCfg = Release|x64
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Release|x64.Build.0 = Release|x64
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Release|x86.ActiveCfg = Release|Win32
+		{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
