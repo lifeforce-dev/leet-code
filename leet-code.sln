@@ -199,10 +199,20 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "733-flood-fill", "733-flood-fill\733-flood-fill.vcxproj", "{6D03D7DE-CE57-4353-9356-F2018FA5B938}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "695-max-area-of-island", "695-max-area-of-island\695-max-area-of-island.vcxproj", "{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "443-string-compression", "443-string-compression\443-string-compression.vcxproj", "{58D9C863-03B2-4420-A629-FBD3A7E8B0CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "617-merge-two-binary-trees", "617-merge-two-binary-trees\617-merge-two-binary-trees.vcxproj", "{D6BAF93D-C6DC-4DE9-81EB-8452ADABAE95}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+		{EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5} = {EAA5B1ED-5E4F-484E-AEE8-0166EDE44BA5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
