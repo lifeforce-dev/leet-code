@@ -452,29 +452,36 @@ def main():
     project_directory = os.path.join(os.getcwd(), project_name)
     os.makedirs(project_directory, exist_ok=True)
 
+    print("Creating backup to leet-code.sln...")
     copy_sln_file("leet-code.sln", "leet-code-backup.sln")
+    print("leet-code-backup.sln created...")
 
     sln_content = []
     with open(SLN_PATH, 'r', encoding="utf8") as sln_file:
         sln_content = sln_file.readlines()
 
+    print("Updating leet-code.sln project configurations...")
     config_set = generate_configuration_set(NEW_PROJECT_GENERATED_GUID)
-    print(config_set)
+    # print(config_set)
 
     updated_sln_content = update_sln_with_configuration_set(sln_content,
                                                             config_set)
 
+    print("Updating leet-code.sln project list...")
     project_entry_string = generate_project_entry(project_name)
-    print(project_entry_string)
+    # print(project_entry_string)
 
     update_sln_with_project_files(updated_sln_content, project_entry_string)
 
     with open(SLN_PATH, 'w', encoding="utf8") as sln_file:
         sln_file.writelines(updated_sln_content)
 
+    print("Creating new project files...")
     generate_vcxproj(project_name)
     generate_vcxproj_filters(project_name)
     generate_main_cpp(project_directory)
+
+    print("Done.")
 
 
 if __name__ == "__main__":
