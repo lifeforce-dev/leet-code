@@ -7,6 +7,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\dependencies\spdlog\include;$(ProjectDir)..;$(ProjectDir)..\dependencies;$(ProjectDir)..\dependencies\Catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
