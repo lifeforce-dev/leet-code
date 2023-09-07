@@ -21,7 +21,7 @@ RESOURCE_FOLDER_GUID = "67DA6AB6-F800-4c08-8B7A-83BB121AAD01"
 # project.
 NEW_PROJECT_GENERATED_GUID = str(uuid.uuid4()).upper()
 
-SLN_PATH = "leet-code1.sln"
+SLN_PATH = "leet-code.sln"
 
 # Tag that signifies the beginning of the Global section in a .sln
 SLN_SECTION_TAG_GLOBAL_BEGIN = "Global"
@@ -131,7 +131,7 @@ def find_section_tags_index_from_sln(target_section, sln_content):
 def copy_sln_file(source_path, destination_path):
     """
     Copy the contents of the source .sln file to the destination .sln file.
-
+    This is so we always have a backup.
     Args:
         source_path (str): The path to the source .sln file.
         destination_path (str): The path to the destination .sln file.
@@ -452,8 +452,7 @@ def main():
     project_directory = os.path.join(os.getcwd(), project_name)
     os.makedirs(project_directory, exist_ok=True)
 
-    # TODO: this is for testing only.
-    copy_sln_file("leet-code.sln", "leet-code1.sln")
+    copy_sln_file("leet-code.sln", "leet-code-backup.sln")
 
     sln_content = []
     with open(SLN_PATH, 'r', encoding="utf8") as sln_file:
