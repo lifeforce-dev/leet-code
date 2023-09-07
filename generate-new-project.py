@@ -2,34 +2,46 @@ import uuid
 import argparse
 import os
 
-PROJECT_TYPE_IDENTIFIER_GUID = "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942"
-
+# GUID for the Common.vcxproj which all projects depend on.
 COMMON_PROJECT_IDENTIFIER_GUID = "19FF8CFD-CA0F-485A-8217-D86A1A8184AF"
 
+# GUID defined by Microsoft for Project types.
+PROJECT_TYPE_IDENTIFIER_GUID = "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942"
+
+# GUID defined by Microsoft for source folder
 SOURCE_FOLDER_GUID = "4FC737F1-C7A5-4376-A066-2A32D752A2FF"
+
+# GUID defined by Microsoft for header folder
 HEADER_FOLDER_GUID = "93995380-89BD-4b04-88EB-625FBE52EBFB"
+
+# GUID defined by Microsoft for resource folder
 RESOURCE_FOLDER_GUID = "67DA6AB6-F800-4c08-8B7A-83BB121AAD01"
 
+# A project must have a GUID. The .sln uses it to identify its associated
+# project.
 NEW_PROJECT_GENERATED_GUID = str(uuid.uuid4()).upper()
 
 SLN_PATH = "leet-code1.sln"
 
+# Tag that signifies the beginning of the Global section in a .sln
 SLN_SECTION_TAG_GLOBAL_BEGIN = "Global"
+
+# Tag that signifies the beginning of the platform section of a .sln
 SLN_SECTION_TAG_PROJECT_PLATFORMS_BEGIN = "ProjectConfigurationPlatforms"
+
+# Generic end of any global section. Its important to associate this with a
+# specific beginning tag.
 SLN_SECTION_TAG_PROJECT_PLATFORMS_END = "EndGlobalSection"
 
-#vcxproj fields
+# vcxproj fields
 
+# Path to the debug props file.
 DEBUG_PROPS_FILENAME = "../props/debug.props"
+
+# Path to the release props file.
 RELEASE_PROPS_FILENAME = "../props/release.props"
 
-PLATFORM_TOOLSET = "v143"
-CONFIGURATION_TYPE = "Application"
-PLATOFRM = "x64"
-
-CONFIGURATION_RELEASE = "Release"
-CONFIGURATION_DEBUG = "Debug"
-
+# Default stub cpp for the new project.
 MAIN_CPP_CONTENTS = '''#define CATCH_CONFIG_MAIN
 
 #include "Catch2/catch.hpp"
@@ -50,12 +62,48 @@ MAIN_CPP_CONTENTS = '''#define CATCH_CONFIG_MAIN
 
 
 class MissingBeginTagException(Exception):
-    def __init__(self, message="A begin_tag is required even though an end_tag is not"):
+    """
+    Exception raised when attempting to insert fields, such as into
+    a .sln file, without specifying the begin_tag of the section it should
+    be inserted above.
+
+    """
+    def __init__(self, message="A begin_tag at minimum is required for text"
+                               "insertion."):
         self.message = message
         super().__init__(self.message)
 
 
 def find_section_tags_index_from_sln(target_section, sln_content):
+    """
+    When we want to insert fields into the .sln, we need to find
+    the appropriate section. Some section tags are ambigious.
+    For example:
+    
+    begin_tags denote the start of a section:
+        GlobalSection(SolutionConfigurationPlatforms)
+        GlobalSection(ProjectConfigurationPlatforms)
+        GlobalSection(NestedProjects)
+    
+    All of those sections however, are closed with the same end_tag:
+        EndGlobalSection
+
+    So, at a minimum, we always need at least a begin_tag. With that, we
+    can at least find a unique position to insert above.
+
+    But if we want to insert at the bottom of a section, we must specify
+    both the beginning and end tag, so that we can find the associated
+    end of the desired section.
+
+    Args:
+        target_section (tuple): A tuple containing (begin_tag, end_tag).
+            end_tag is allowed to be None. Look to
+            SLN_SECTION_TAG_PROJECT_PLATFORMS_BEGIN and
+            SLN_SECTION_TAG_PROJECT_PLATFORMS_END and their usage as examples.
+
+    Returns:
+        tuple: A tuple containing the line index in the .sln of each tag.
+    """
     begin_tag, end_tag = target_section
 
     if begin_tag is None:
@@ -162,20 +210,25 @@ def update_sln_with_configuration_set(sln_content, config_set):
 
     Args:
         sln_path (str): The path to the .sln file.
-        configuration_set (str): The configuration set generated for the project.
+        configuration_set (str): The configuration set generated for the
+        project.
 
     Returns:
-        bool: True if the update was successful, False otherwise.
+        str: The updated content of the .sln file
     """
 
+    # The section we want to insert in between.
     section_tags = (
         SLN_SECTION_TAG_PROJECT_PLATFORMS_BEGIN,
         SLN_SECTION_TAG_PROJECT_PLATFORMS_END
     )
 
+    # We don't care about the begin_index here.
     _, end_index = find_section_tags_index_from_sln(section_tags,
                                                     sln_content)
 
+    # We want to insert above the end_index. That will be the bottom of the
+    # section.
     if end_index != -1:
         updated_sln_content = sln_content
         updated_sln_content.insert(end_index, config_set)
@@ -187,6 +240,21 @@ def update_sln_with_configuration_set(sln_content, config_set):
 
 
 def update_sln_with_project_files(sln_content, project_entry):
+    """
+    Update the .sln file content to include the newly generated project entry
+
+    Args:
+        sln_content (str): The content of the .sln file to be updated.
+        project_entry (str): The project entry to be added to the .sln
+        file content.
+
+    Returns:
+        str: The updated content of the .sln file after including the project
+        entry.
+
+    Raises:
+        ValueError: If the global section is not found in the .sln file.
+    """
     section_tags = (
         SLN_SECTION_TAG_GLOBAL_BEGIN,
         None
@@ -204,6 +272,16 @@ def update_sln_with_project_files(sln_content, project_entry):
 
 
 def generate_vcxproj(project_name):
+    """
+    Generates a vcxproj file based on the name.
+
+    Args:
+        project_name (str): The name that will be hard associated with the
+        project generated
+
+    Returns:
+        None: we simply write the file.
+    """
     vcxproj_template = f'''<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
@@ -291,6 +369,17 @@ def generate_vcxproj(project_name):
 
 
 def generate_vcxproj_filters(project_name):
+    """
+    Generates a vcxproj.filter file based on the name.
+
+    Args:
+        project_name (str): The name that will be hard associated with the
+        filters generated
+
+    Returns:
+        None: we simply write the file.
+    """
+
     filters_template = f'''<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
@@ -322,6 +411,7 @@ def generate_vcxproj_filters(project_name):
 </Project>
 '''
 
+    # TODO: Maybe put writing to the project path into its own function...
     project_directory = os.path.join(os.getcwd(), project_name)
     filters_file_path = os.path.join(project_directory, f'{project_name}.vcxproj.filters')
     with open(filters_file_path, 'w') as filters_file:
@@ -329,12 +419,28 @@ def generate_vcxproj_filters(project_name):
 
 
 def generate_main_cpp(project_directory):
+    """
+    Generates a template cpp file based in the project directory.
+
+    Args:
+        project_directory (str): The directory that the cpp file will
+        be written to.
+
+    Returns:
+        None: we simply write the file.
+    """
+
     main_cpp_file_path = os.path.join(project_directory, 'main.cpp')
     with open(main_cpp_file_path, 'w') as main_cpp_file:
         main_cpp_file.write(MAIN_CPP_CONTENTS)
 
 
 def main():
+    """
+    Given a project name, this script will generate a project and all of
+    its associated files, update the .sln file, and generate a template
+    cpp file.
+    """
 
     parser = argparse.ArgumentParser(description="Generate project files"
                                      " and update solution files")
