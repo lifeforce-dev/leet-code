@@ -15,9 +15,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <!-- Add more ClCompile entries for other source files as needed -->
   </ItemGroup>
   <ItemGroup>
-    <!-- Add more ResourceCompile entries for resource files as needed -->
+    <ClInclude Include="common/Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
+

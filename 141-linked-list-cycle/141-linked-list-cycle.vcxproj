@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CB762372-6B68-4AE7-97CD-517D8E115942}</ProjectGuid>
+    <ProjectGuid>{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>141-linked-list-cycle</RootNamespace>
   </PropertyGroup>

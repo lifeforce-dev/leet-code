@@ -218,7 +218,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1-two-sum", "1-two-sum\1-tw
 		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "141-linked-list-cycle", "141-linked-list-cycle\141-linked-list-cycle.vcxproj", "{CB762372-6B68-4AE7-97CD-517D8E115942}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "141-linked-list-cycle", "141-linked-list-cycle\141-linked-list-cycle.vcxproj", "{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
 	EndProjectSection
@@ -305,10 +305,10 @@ Global
 		{DD003553-3FAD-4A6E-8C5A-2613EDE6A721}.Debug|x64.Build.0 = Debug|x64
 		{DD003553-3FAD-4A6E-8C5A-2613EDE6A721}.Release|x64.ActiveCfg = Release|x64
 		{DD003553-3FAD-4A6E-8C5A-2613EDE6A721}.Release|x64.Build.0 = Release|x64
-		{CB762372-6B68-4AE7-97CD-517D8E115942}.Debug|x64.ActiveCfg = Debug|x64
-		{CB762372-6B68-4AE7-97CD-517D8E115942}.Debug|x64.Build.0 = Debug|x64
-		{CB762372-6B68-4AE7-97CD-517D8E115942}.Release|x64.ActiveCfg = Release|x64
-		{CB762372-6B68-4AE7-97CD-517D8E115942}.Release|x64.Build.0 = Release|x64
+		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Debug|x64.ActiveCfg = Debug|x64
+		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Debug|x64.Build.0 = Debug|x64
+		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Release|x64.ActiveCfg = Release|x64
+		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,6 +58,7 @@ MAIN_CPP_CONTENTS = '''#define CATCH_CONFIG_MAIN
 \t\tREQUIRE(true);
 \t}
 }
+
 '''
 
 
@@ -361,6 +362,7 @@ def generate_vcxproj(project_name):
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
+
 '''
     project_directory = os.path.join(os.getcwd(), project_name)
     vcxproj_file_path = os.path.join(project_directory, f'{project_name}.vcxproj')
@@ -404,6 +406,7 @@ def generate_vcxproj_filters(project_name):
     </ClInclude>
   </ItemGroup>
 </Project>
+
 '''
 
     # TODO: Maybe put writing to the project path into its own function...
