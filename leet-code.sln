@@ -223,6 +223,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "141-linked-list-cycle", "14
 		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-add-two-numbers", "2-add-two-numbers\2-add-two-numbers.vcxproj", "{93A12CE7-FA54-4CE7-A171-244AB8DEBD66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -309,6 +314,10 @@ Global
 		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Debug|x64.Build.0 = Debug|x64
 		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Release|x64.ActiveCfg = Release|x64
 		{EFD7C605-BC23-4F94-A6CF-99EAA25778AA}.Release|x64.Build.0 = Release|x64
+		{93A12CE7-FA54-4CE7-A171-244AB8DEBD66}.Debug|x64.ActiveCfg = Debug|x64
+		{93A12CE7-FA54-4CE7-A171-244AB8DEBD66}.Debug|x64.Build.0 = Debug|x64
+		{93A12CE7-FA54-4CE7-A171-244AB8DEBD66}.Release|x64.ActiveCfg = Release|x64
+		{93A12CE7-FA54-4CE7-A171-244AB8DEBD66}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
