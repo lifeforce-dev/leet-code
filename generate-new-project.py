@@ -397,16 +397,11 @@ def generate_vcxproj_filters(project_name):
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <!-- Add more ClCompile entries for other source files as needed -->
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common/Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <!-- Add more ClInclude entries for other header files as needed -->
-  </ItemGroup>
-  <ItemGroup>
-    <!-- Add more ResourceCompile entries for resource files as needed -->
   </ItemGroup>
 </Project>
 '''
