@@ -15,4 +15,3 @@ SCENARIO("<brief problem description>")
 		REQUIRE(true);
 	}
 }
-

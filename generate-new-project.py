@@ -58,7 +58,6 @@ MAIN_CPP_CONTENTS = '''#define CATCH_CONFIG_MAIN
 \t\tREQUIRE(true);
 \t}
 }
-
 '''
 
 
