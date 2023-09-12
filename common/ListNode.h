@@ -5,11 +5,42 @@
 
 #pragma once
 
+#include <vector>
+#include <memory>
+
+namespace Common {
+
+//==============================================================================
+
 struct ListNode
 {
+	ListNode();
+	ListNode(int32_t x);
+	ListNode(int32_t x, ListNode* next);
+
 	int value = 0;
-	ListNode* next;
-	ListNode() : value(0), next(nullptr) {}
-	ListNode(int x) : value(x), next(nullptr) {}
-	ListNode(int x, ListNode* next) : value(x), next(next) {}
+
+	// We can't use a unique_ptr because we can't interact with LeetCode's ListNode API that way.
+	ListNode* next = nullptr;
+
+	bool operator==(const ListNode& list1);
 };
+
+namespace ListUtil {
+
+//==============================================================================
+
+// The called of this assumes ownership of the returned linked list.
+ListNode* toList(const std::vector<int32_t>& values);
+
+// The only reason this exists is to conform the code to what LeetCode expects.
+// This must be called to avoid memory leaks.
+void deleteLinkedList(ListNode* head);
+
+//==============================================================================
+
+} // namespace ListUtil
+
+//==============================================================================
+
+} // namespace Common

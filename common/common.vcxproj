@@ -156,6 +156,7 @@
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ListNode.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
