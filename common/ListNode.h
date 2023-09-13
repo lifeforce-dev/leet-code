@@ -26,6 +26,7 @@ struct ListNode
 	bool operator==(const ListNode& list1);
 };
 
+// Utility functions, usually for building test cases.
 namespace ListUtil {
 
 //==============================================================================
@@ -33,9 +34,14 @@ namespace ListUtil {
 // The called of this assumes ownership of the returned linked list.
 ListNode* toList(const std::vector<int32_t>& values);
 
+ListNode* toListWithCycle(const std::vector<int32_t>& values, int32_t cycleIndex);
+
 // The only reason this exists is to conform the code to what LeetCode expects.
 // This must be called to avoid memory leaks.
 void deleteLinkedList(ListNode* head);
+
+// Some test cases require a list with a cycle. We know the size, so just delete up to the end.
+void deleteLinkedListWithCycle(ListNode* head, int32_t size);
 
 //==============================================================================
 
