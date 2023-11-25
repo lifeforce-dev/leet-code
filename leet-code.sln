@@ -238,11 +238,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "217-contains-duplicate", "2
 		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "88-merged-sorted-array", "88-merged-sorted-array\88-merged-sorted-array.vcxproj", "{67EEF82A-392A-4F2B-9321-72B2A85AF8C2}"
-	ProjectSection(ProjectDependencies) = postProject
-		{19FF8CFD-CA0F-485A-8217-D86A1A8184AF} = {19FF8CFD-CA0F-485A-8217-D86A1A8184AF}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -341,10 +336,6 @@ Global
 		{79356ABD-E81D-4678-A962-F4316477FEFD}.Debug|x64.Build.0 = Debug|x64
 		{79356ABD-E81D-4678-A962-F4316477FEFD}.Release|x64.ActiveCfg = Release|x64
 		{79356ABD-E81D-4678-A962-F4316477FEFD}.Release|x64.Build.0 = Release|x64
-		{67EEF82A-392A-4F2B-9321-72B2A85AF8C2}.Debug|x64.ActiveCfg = Debug|x64
-		{67EEF82A-392A-4F2B-9321-72B2A85AF8C2}.Debug|x64.Build.0 = Debug|x64
-		{67EEF82A-392A-4F2B-9321-72B2A85AF8C2}.Release|x64.ActiveCfg = Release|x64
-		{67EEF82A-392A-4F2B-9321-72B2A85AF8C2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
