@@ -5,6 +5,8 @@
 
 # Custom directories
 scratch-pad/
+.idea/
+.vsCode/
 
 # User-specific files
 *.rsuser
