@@ -7,6 +7,8 @@
 scratch-pad/
 .idea/
 .vsCode/
+launch.json
+leet-code-backup.sln
 
 # User-specific files
 *.rsuser
